@@ -10,5 +10,10 @@
   ],
   "repository": "https://github.com/mauricesnip/sulu-headless-api-client",
   "author": "Maurice Snip",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.21.4",
+    "@babel/eslint-parser": "^7.21.3",
+    "eslint": "^8.38.0"
+  }
 }
