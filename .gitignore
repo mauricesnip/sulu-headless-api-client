@@ -4,5 +4,6 @@ test-results
 
 # Files
 .DS_Store
+.npmrc
 TODO.md
 yarn-error.log
