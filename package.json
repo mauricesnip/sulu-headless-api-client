@@ -1,0 +1,14 @@
+{
+  "name": "sulu-headless-api-client",
+  "version": "0.1.0",
+  "description": "An API client for SuluHeadlessBundle.",
+  "keywords": [
+    "sulu",
+    "headless",
+    "api",
+    "client"
+  ],
+  "repository": "https://github.com/mauricesnip/sulu-headless-api-client",
+  "author": "Maurice Snip",
+  "license": "MIT"
+}
