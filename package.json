@@ -23,6 +23,7 @@
     "api:list": "mockoon-cli list",
     "api:start": "mockoon-cli start --data ./mock-api.json",
     "api:stop": "mockoon-cli stop mockoon-sulu-headless-mock-api",
+    "lint": "eslint 'src/**/*.js' && echo 'ESLint: 0 problems found'",
     "test": "yarn api:start && npx playwright test ; yarn api:stop"
   }
 }
