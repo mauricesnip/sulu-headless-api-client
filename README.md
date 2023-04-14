@@ -3,8 +3,8 @@
 This module provides a [`Promise`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise) based way to work with the [`SuluHeadlessBundle`](https://github.com/sulu/SuluHeadlessBundle) JSON API.
 
 <p>
-    <img src="https://img.shields.io/badge/npm-v1.0.0-blue">
-    <img src="https://img.shields.io/badge/license-MIT-green">
+    <img src="https://img.shields.io/github/package-json/v/mauricesnip/sulu-headless-api-client">
+    <img src="https://img.shields.io/github/license/mauricesnip/sulu-headless-api-client">
 </p>
 
 ## Installation
