@@ -8,6 +8,7 @@
     "api",
     "client"
   ],
+  "main": "src/client.js",
   "repository": "https://github.com/mauricesnip/sulu-headless-api-client",
   "author": "Maurice Snip",
   "license": "MIT",
