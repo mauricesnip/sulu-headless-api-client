@@ -1,0 +1,8 @@
+# Directories
+node_modules
+test-results
+
+# Files
+.DS_Store
+TODO.md
+yarn-error.log
