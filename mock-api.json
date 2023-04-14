@@ -1,0 +1,219 @@
+{
+  "uuid": "81dcbb59-fa7b-4b03-8d6c-61a930a30a12",
+  "lastMigration": 27,
+  "name": "Sulu Headless Mock API",
+  "endpointPrefix": "",
+  "latency": 0,
+  "port": 3000,
+  "hostname": "",
+  "routes": [
+    {
+      "uuid": "4f10d022-6fe8-4017-8551-adac6097f97f",
+      "documentation": "",
+      "method": "get",
+      "endpoint": ":page.json",
+      "responses": [
+        {
+          "uuid": "2c65a483-e1b8-45ea-98f0-9222c980eb29",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "w0e0",
+          "bodyType": "DATABUCKET"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "a1425453-006e-4f3d-8410-fa74ab3178c5",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "api/navigations/:key",
+      "responses": [
+        {
+          "uuid": "bc477855-feaa-459e-9512-e840a8fe9bbb",
+          "body": "{\n  \"_embedded\": {\n    \"items\": []\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "b0d2d424-4696-4cb0-9078-75074cf2cd2e",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "api/snippet-areas/:area",
+      "responses": [
+        {
+          "uuid": "1cab590b-5b5e-43ed-980d-73a76d3ff523",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "w0e0",
+          "bodyType": "DATABUCKET"
+        },
+        {
+          "uuid": "7042fefb-e0f5-44a7-9c72-a8d1b568c3c9",
+          "body": "{\n  \"message\": \"Snippet area does not exist\"\n}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "area",
+              "value": "non-existent",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    },
+    {
+      "uuid": "96421bb6-dfea-4dce-9a5b-3da89896feee",
+      "documentation": "",
+      "method": "get",
+      "endpoint": "api/search",
+      "responses": [
+        {
+          "uuid": "1a8d01c3-800e-41af-8479-fe30ea8d3295",
+          "body": "{\n  \"_embedded\": {\n    \"hits\": []\n  }\n}",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "",
+          "bodyType": "INLINE"
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
+    }
+  ],
+  "proxyMode": false,
+  "proxyHost": "",
+  "proxyRemovePrefix": false,
+  "tlsOptions": {
+    "enabled": false,
+    "type": "CERT",
+    "pfxPath": "",
+    "certPath": "",
+    "keyPath": "",
+    "caPath": "",
+    "passphrase": ""
+  },
+  "cors": true,
+  "headers": [
+    {
+      "key": "Content-Type",
+      "value": "application/json"
+    },
+    {
+      "key": "Access-Control-Allow-Origin",
+      "value": "*"
+    },
+    {
+      "key": "Access-Control-Allow-Methods",
+      "value": "GET,POST,PUT,PATCH,DELETE,HEAD,OPTIONS"
+    },
+    {
+      "key": "Access-Control-Allow-Headers",
+      "value": "Content-Type, Origin, Accept, Authorization, Content-Length, X-Requested-With"
+    }
+  ],
+  "proxyReqHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "proxyResHeaders": [
+    {
+      "key": "",
+      "value": ""
+    }
+  ],
+  "data": [
+    {
+      "uuid": "9885150b-5d82-42c3-9ded-7a5c373ddfd5",
+      "id": "w0e0",
+      "name": "Content response",
+      "documentation": "",
+      "value": "{\n  \"content\": {\n    \"title\": \"Lorem ipsum\"\n  }\n}"
+    }
+  ],
+  "folders": [],
+  "rootChildren": [
+    {
+      "type": "route",
+      "uuid": "4f10d022-6fe8-4017-8551-adac6097f97f"
+    },
+    {
+      "type": "route",
+      "uuid": "a1425453-006e-4f3d-8410-fa74ab3178c5"
+    },
+    {
+      "type": "route",
+      "uuid": "b0d2d424-4696-4cb0-9078-75074cf2cd2e"
+    },
+    {
+      "type": "route",
+      "uuid": "96421bb6-dfea-4dce-9a5b-3da89896feee"
+    }
+  ]
+}

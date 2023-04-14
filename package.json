@@ -14,6 +14,15 @@
   "devDependencies": {
     "@babel/core": "^7.21.4",
     "@babel/eslint-parser": "^7.21.3",
+    "@mockoon/cli": "^2.4.0",
+    "@playwright/test": "^1.32.3",
+    "axios": "^1.3.5",
     "eslint": "^8.38.0"
+  },
+  "scripts": {
+    "api:list": "mockoon-cli list",
+    "api:start": "mockoon-cli start --data ./mock-api.json",
+    "api:stop": "mockoon-cli stop mockoon-sulu-headless-mock-api",
+    "test": "yarn api:start && npx playwright test ; yarn api:stop"
   }
 }
