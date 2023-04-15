@@ -158,7 +158,7 @@ Retrieves navigation data with the given key and optional query parameters.
 | Parameter        | Required? | Type      | Default | Description                                |
 |:-----------------|:----------|:----------|:--------|:-------------------------------------------|
 | `key`            | Yes       | `string`  | -       | The key of the navigation to retrieve.     |
-| `params`         | No        | `Object`  | `{}`    | The query parameters for the request.      |
+| `params`         | No        | `Object`  | -       | The query parameters for the request.      |
 | `params.depth`   | No        | `number`  | `1`     | The maximum depth of the navigation.       |
 | `params.excerpt` | No        | `boolean` | `false` | Whether to include excerpt data.           |
 | `params.flat`    | No        | `boolean` | `false` | Whether to return as list instead of tree. |
@@ -176,7 +176,7 @@ Retrieves snippet data with the given area name and optional query parameters.
 | Parameter                 | Required? | Type      | Default | Description                               |
 |:--------------------------|:----------|:----------|:--------|:------------------------------------------|
 | `area`                    | Yes       | `string`  | -       | The name of the snippet area to retrieve. |
-| `params`                  | No        | `Object`  | `{}`    | The query parameters for the request.     |
+| `params`                  | No        | `Object`  | -       | The query parameters for the request.     |
 | `params.includeExtension` | No        | `boolean` | `false` | Whether to include extension data.        |
 
 #### Return value

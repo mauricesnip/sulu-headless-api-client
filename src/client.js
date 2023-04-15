@@ -105,7 +105,7 @@ export default class Client {
      * Retrieves navigation data with the given key and optional query parameters.
      *
      * @param {string} key - The key of the navigation to retrieve.
-     * @param {Object} [params={}] - The query parameters for the request.
+     * @param {Object} [params] - The query parameters for the request.
      * @returns {Promise<Object>} A Promise that resolves to the navigation data.
      */
     getNavigationByKey(key, params) {
@@ -116,7 +116,7 @@ export default class Client {
      * Retrieves snippet data with the given area name and optional query parameters.
      *
      * @param {string} area - The name of the snippet area to retrieve.
-     * @param {Object} [params={}] - The query parameters for the request.
+     * @param {Object} [params] - The query parameters for the request.
      * @returns {Promise<Object>} A Promise that resolves to the snippet area data.
      */
     getSnippetByArea(area, params) {
