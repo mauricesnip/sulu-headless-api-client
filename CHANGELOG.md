@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 
 - Improved JSDoc.
+- Better handling of falsy `params` value for query string
 
 ## [0.1.0] - 2023-04-14
 
