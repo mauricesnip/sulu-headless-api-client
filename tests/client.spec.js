@@ -19,13 +19,22 @@ test.describe('Client', () => {
     });
 
     // Feature tests
-    test('should build a correct URL', async () => {
+    test('should build a correct URL without params', async () => {
+        const url = client.buildUrl('/test');
+        expect(url.toString()).toBe(`${client.baseUrl}/test`);
+    });
+
+    test('should build a correct URL with params', async () => {
         const url = client.buildUrl('/test', {
             foo: 'bar',
             baz: 'qux',
         });
-
         expect(url.toString()).toBe(`${client.baseUrl}/test?foo=bar&baz=qux`);
+    });
+
+    test('should build a correct URL with falsy params', async () => {
+        const url = client.buildUrl('/test', false);
+        expect(url.toString()).toBe(`${client.baseUrl}/test`);
     });
 
     test('should transform response', async () => {

@@ -52,7 +52,10 @@ export default class Client {
      */
     buildUrl(path, params = {}, withLocale = true) {
         const url = new URL((this.locale && withLocale ? `/${this.locale}` : '') + path, this.baseUrl);
-        url.search = new URLSearchParams(params);
+
+        if(params) {
+            url.search = new URLSearchParams(params);
+        }
 
         return url;
     }
