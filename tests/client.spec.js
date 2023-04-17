@@ -85,4 +85,20 @@ test.describe('Client', () => {
         const data = await client.search('lorem');
         expect(data).toHaveProperty('_embedded.hits');
     });
+
+    test('should retrieve localized page data by path', async () => {
+        const originalLocale = client.locale;
+        client.locale = 'en';
+        const data = await client.getPageByPath('/en/hello-world');
+        client.locale = originalLocale;
+        expect(data.content.title).toBe('Hello world');
+    });
+
+    test('should retrieve localized snippet data by area name', async () => {
+        const originalLocale = client.locale;
+        client.locale = 'en';
+        const data = await client.getSnippetByArea('default');
+        client.locale = originalLocale;
+        expect(data.content.title).toBe('Hello world');
+    });
 });

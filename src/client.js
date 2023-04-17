@@ -7,6 +7,7 @@ export default class Client {
     baseUrl;
     fetchClient;
     fetchOptions;
+    locale;
     onError;
     onResponse;
     removeEmbedded;
@@ -18,6 +19,7 @@ export default class Client {
      * @param {string} [options.baseUrl=window.location.origin] - The base URL for the API.
      * @param {function} [options.fetchClient=fetch.bind(window)] - The fetch client to use.
      * @param {Object} [options.fetchOptions={}] - The fetch client options.
+     * @param {string} [options.locale=''] - The locale for every request.
      * @param {function} [options.onError=() => {}] - The function to call on error.
      * @param {function} [options.onResponse=(r) => r] - The function to call on response.
      * @param {boolean} [options.removeEmbedded=false] - Whether to remove the _embedded layer from the response if present.
@@ -26,6 +28,7 @@ export default class Client {
         baseUrl = window.location.origin,
         fetchClient = fetch.bind(window),
         fetchOptions = {},
+        locale = '',
         onError = () => {},
         onResponse = (r) => r,
         removeEmbedded = false,
@@ -33,6 +36,7 @@ export default class Client {
         this.baseUrl = baseUrl;
         this.fetchClient = fetchClient;
         this.fetchOptions = fetchOptions;
+        this.locale = locale;
         this.onError = onError;
         this.onResponse = onResponse;
         this.removeEmbedded = removeEmbedded;
@@ -43,10 +47,11 @@ export default class Client {
      *
      * @param {string} path - The path for the URL.
      * @param {Object} [params={}] - The query parameters for the URL.
+     * @param {boolean} [withLocale=true] - Whether to prepend locale to path.
      * @returns {URL} The built URL.
      */
-    buildUrl(path, params = {}) {
-        const url = new URL(path, this.baseUrl);
+    buildUrl(path, params = {}, withLocale = true) {
+        const url = new URL((this.locale && withLocale ? `/${this.locale}` : '') + path, this.baseUrl);
         url.search = new URLSearchParams(params);
 
         return url;
@@ -56,15 +61,16 @@ export default class Client {
      * Sends a request to the API with the given path and query parameters.
      *
      * @param {string} path - The path for the request.
-     * @param {Object} [params={}] - The query parameters for the request.
+     * @param {Object} [params] - The query parameters for the request.
+     * @param {boolean} [withLocale] - Whether to build a localized URL.
      * @returns {Promise<Object>} A Promise that resolves to the request's JSON.
      */
-    async request(path, params = {}) {
+    async request(path, params, withLocale) {
         let response = null;
 
         try {
             response = await this.fetchClient(
-                this.buildUrl(path, params).toString(),
+                this.buildUrl(path, params, withLocale).toString(),
                 this.fetchOptions
             );
         } catch (error) {
@@ -98,7 +104,7 @@ export default class Client {
      * @returns {Promise<Object>} A Promise that resolves to the page data.
      */
     getPageByPath(path) {
-        return this.request(`${path}.json`);
+        return this.request(`${path}.json`, null, false);
     }
 
     /**

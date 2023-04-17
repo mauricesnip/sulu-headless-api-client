@@ -143,6 +143,87 @@
       "enabled": true,
       "responseMode": null,
       "type": "http"
+    },
+    {
+      "uuid": "340d0baf-a233-4e54-9f33-521d2b94b251",
+      "type": "http",
+      "documentation": "",
+      "method": "get",
+      "endpoint": ":locale/:page.json",
+      "responses": [
+        {
+          "uuid": "219e2896-e921-44b5-a0a9-06ee35c48da0",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "bodyType": "DATABUCKET",
+          "filePath": "",
+          "databucketID": "48s8",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true
+        }
+      ],
+      "enabled": true,
+      "responseMode": null
+    },
+    {
+      "uuid": "e4445514-4bbf-4bfd-bb6e-2b03b904d2ea",
+      "documentation": "",
+      "method": "get",
+      "endpoint": ":locale/api/snippet-areas/:area",
+      "responses": [
+        {
+          "uuid": "a86e39e6-5e1b-4339-8124-cd74d0a9ee97",
+          "body": "",
+          "latency": 0,
+          "statusCode": 200,
+          "label": "",
+          "headers": [],
+          "filePath": "",
+          "sendFileAsBody": false,
+          "rules": [],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": true,
+          "databucketID": "48s8",
+          "bodyType": "DATABUCKET"
+        },
+        {
+          "uuid": "a647df05-8e5b-4b4e-916b-bf62a5cafde1",
+          "body": "{\n  \"message\": \"Snippet area does not exist\"\n}",
+          "latency": 0,
+          "statusCode": 404,
+          "label": "",
+          "headers": [],
+          "bodyType": "INLINE",
+          "filePath": "",
+          "databucketID": "",
+          "sendFileAsBody": false,
+          "rules": [
+            {
+              "target": "params",
+              "modifier": "area",
+              "value": "non-existent",
+              "invert": false,
+              "operator": "equals"
+            }
+          ],
+          "rulesOperator": "OR",
+          "disableTemplating": false,
+          "fallbackTo404": false,
+          "default": false
+        }
+      ],
+      "enabled": true,
+      "responseMode": null,
+      "type": "http"
     }
   ],
   "proxyMode": false,
@@ -195,6 +276,13 @@
       "name": "Content response",
       "documentation": "",
       "value": "{\n  \"content\": {\n    \"title\": \"Lorem ipsum\"\n  }\n}"
+    },
+    {
+      "uuid": "5ae3fa4a-5348-4264-bba6-85e76e93473e",
+      "id": "48s8",
+      "name": "Locallized content response",
+      "documentation": "",
+      "value": "{\n  \"content\": {\n    \"title\": \"Hello world\"\n  }\n}"
     }
   ],
   "folders": [],
@@ -214,6 +302,14 @@
     {
       "type": "route",
       "uuid": "96421bb6-dfea-4dce-9a5b-3da89896feee"
+    },
+    {
+      "type": "route",
+      "uuid": "340d0baf-a233-4e54-9f33-521d2b94b251"
+    },
+    {
+      "type": "route",
+      "uuid": "e4445514-4bbf-4bfd-bb6e-2b03b904d2ea"
     }
   ]
 }

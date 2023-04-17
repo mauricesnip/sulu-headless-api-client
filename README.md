@@ -129,6 +129,7 @@ Creates a client.
 | `options.baseUrl`        | No        | `string`            | `window.location.pathname` | The base URL for the API.                                             |
 | `options.fetchClient`    | No        | `Function`          | `fetch`                    | The fetch client to use. Tested with `fetch` and `axios`.             |
 | `options.fetchOptions`   | No        | `Object`            | `{}`                       | The fetch client options.                                             |
+| `options.locale`         | No        | `string`            | `''`                       | The locale for every request.                                         |
 | `options.onError`        | No        | `Function(error)`   | `() => {}`                 | The function to call on error.                                        |
 | `options.onResponse`     | No        | `Function(reponse)` | `(r) => r`                 | The function to call on response.                                     |
 | `options.removeEmbedded` | No        | `boolean`           | `false`                    | Whether to remove the `_embedded` layer from the response if present. |
