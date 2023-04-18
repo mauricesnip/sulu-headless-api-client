@@ -4,6 +4,7 @@
  * An API client for SuluHeadlessBundle.
  */
 export default class Client {
+    basePath;
     baseUrl;
     fetchClient;
     fetchOptions;
@@ -15,8 +16,9 @@ export default class Client {
     /**
      * Creates a client.
      *
-     * @param {Object} options - The options for the client.
-     * @param {string} [options.baseUrl=window.location.origin] - The base URL for the API.
+     * @param {Object} [options={}] - The options for the client.
+     * @param {string} [options.baseUrl='/api'] - The base path of the API.
+     * @param {string} [options.baseUrl=window.location.origin] - The base URL of the API.
      * @param {function} [options.fetchClient=fetch.bind(window)] - The fetch client to use.
      * @param {Object} [options.fetchOptions={}] - The fetch client options.
      * @param {string} [options.locale=''] - The locale for every request.
@@ -25,6 +27,7 @@ export default class Client {
      * @param {boolean} [options.removeEmbedded=false] - Whether to remove the _embedded layer from the response if present.
      */
     constructor({
+        basePath = '/api',
         baseUrl = window.location.origin,
         fetchClient = fetch.bind(window),
         fetchOptions = {},
@@ -32,7 +35,8 @@ export default class Client {
         onError = () => {},
         onResponse = (r) => r,
         removeEmbedded = false,
-    }) {
+    } = {}) {
+        this.basePath = basePath;
         this.baseUrl = baseUrl;
         this.fetchClient = fetchClient;
         this.fetchOptions = fetchOptions;
@@ -46,12 +50,25 @@ export default class Client {
      * Builds a URL with the given path and optional query parameters.
      *
      * @param {string} path - The path for the URL.
-     * @param {Object} [params={}] - The query parameters for the URL.
-     * @param {boolean} [withLocale=true] - Whether to prepend locale to path.
+     * @param {Object} [options={}] - The options for building the URL.
+     * @param {Object} [options.params={}] - The query parameters for the URL.
+     * @param {boolean} [options.withBasePath=true] - Whether to apply the base path.
+     * @param {boolean} [options.withLocale=true] - Whether to prepend locale to path.
      * @returns {URL} The built URL.
      */
-    buildUrl(path, params = {}, withLocale = true) {
-        const url = new URL((this.locale && withLocale ? `/${this.locale}` : '') + path, this.baseUrl);
+    buildUrl(
+        path,
+        {
+            params = {},
+            withBasePath = true,
+            withLocale = true,
+        } = {}
+    ) {
+        const url = new URL([
+            ...(this.locale && withLocale ? [this.locale] : []),
+            ...(this.basePath && withBasePath ? [this.basePath] : []),
+            path,
+        ].join('/').replaceAll('//', '/'), this.baseUrl);
 
         if(params) {
             url.search = new URLSearchParams(params);
@@ -61,21 +78,16 @@ export default class Client {
     }
 
     /**
-     * Sends a request to the API with the given path and query parameters.
+     * Sends a request to the API with the given path and URL options.
      *
-     * @param {string} path - The path for the request.
-     * @param {Object} [params] - The query parameters for the request.
-     * @param {boolean} [withLocale] - Whether to build a localized URL.
+     * @param {URL} url - The URL for the request.
      * @returns {Promise<Object>} A Promise that resolves to the request's JSON.
      */
-    async request(path, params, withLocale) {
+    async request(url) {
         let response = null;
 
         try {
-            response = await this.fetchClient(
-                this.buildUrl(path, params, withLocale).toString(),
-                this.fetchOptions
-            );
+            response = await this.fetchClient(url.toString(), this.fetchOptions);
         } catch (error) {
             this.onError(error);
             throw error;
@@ -107,7 +119,12 @@ export default class Client {
      * @returns {Promise<Object>} A Promise that resolves to the page data.
      */
     getPageByPath(path) {
-        return this.request(`${path}.json`, null, false);
+        return this.request(
+            this.buildUrl(`${path}.json`, {
+                withBasePath: false,
+                withLocale: false,
+            }
+        ));
     }
 
     /**
@@ -118,7 +135,11 @@ export default class Client {
      * @returns {Promise<Object>} A Promise that resolves to the navigation data.
      */
     getNavigationByKey(key, params) {
-        return this.request(`/api/navigations/${key}`, params);
+        return this.request(
+            this.buildUrl(`/navigations/${key}`, {
+                params,
+            }
+        ));
     }
 
     /**
@@ -129,7 +150,11 @@ export default class Client {
      * @returns {Promise<Object>} A Promise that resolves to the snippet area data.
      */
     getSnippetByArea(area, params) {
-        return this.request(`/api/snippet-areas/${area}`, params);
+        return this.request(
+            this.buildUrl(`/snippet-areas/${area}`, {
+                params,
+            })
+        );
     }
 
     /**
@@ -139,8 +164,12 @@ export default class Client {
      * @returns {Promise<Object>} A Promise that resolves to the search results.
      */
     search(query) {
-        return this.request('/api/search', {
-            q: query,
-        });
+        return this.request(
+            this.buildUrl('/search', {
+                params: {
+                    q: query,
+                },
+            }
+        ));
     }
 }

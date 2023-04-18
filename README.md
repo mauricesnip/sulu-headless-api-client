@@ -126,7 +126,8 @@ Creates a client.
 | Parameter                | Required? | Type                | Default                    | Description                                                           |
 |:-------------------------|:----------|:--------------------|:---------------------------|:----------------------------------------------------------------------|
 | `options`                | No        | `Object`            | `{}`                       | The options for the client.                                           |
-| `options.baseUrl`        | No        | `string`            | `window.location.pathname` | The base URL for the API.                                             |
+| `options.basePath`       | No        | `string`            | `/api`                     | The base path of the API.                                             |
+| `options.baseUrl`        | No        | `string`            | `window.location.pathname` | The base URL of the API.                                              |
 | `options.fetchClient`    | No        | `Function`          | `fetch`                    | The fetch client to use. Tested with `fetch` and `axios`.             |
 | `options.fetchOptions`   | No        | `Object`            | `{}`                       | The fetch client options.                                             |
 | `options.locale`         | No        | `string`            | `''`                       | The locale for every request.                                         |

@@ -5,7 +5,7 @@ import axios from 'axios';
 // Provide origin
 global.window = {
     location: {
-        origin: 'http://127.0.0.1:3000',
+        origin: 'http://localhost:3000',
     },
 };
 
@@ -15,26 +15,34 @@ test.describe('Client', () => {
 
     // Single client for all tests
     test.beforeAll(async () => {
-        client = new Client({});
+        client = new Client();
     });
 
     // Feature tests
     test('should build a correct URL without params', async () => {
-        const url = client.buildUrl('/test');
-        expect(url.toString()).toBe(`${client.baseUrl}/test`);
+        const url = client.buildUrl('/test.json', {
+            withBasePath: false,
+        });
+        expect(url.toString()).toBe(`${client.baseUrl}/test.json`);
     });
 
     test('should build a correct URL with params', async () => {
-        const url = client.buildUrl('/test', {
-            foo: 'bar',
-            baz: 'qux',
+        const url = client.buildUrl('/test.json', {
+            params: {
+                foo: 'bar',
+                baz: 'qux',
+            },
+            withBasePath: false,
         });
-        expect(url.toString()).toBe(`${client.baseUrl}/test?foo=bar&baz=qux`);
+        expect(url.toString()).toBe(`${client.baseUrl}/test.json?foo=bar&baz=qux`);
     });
 
     test('should build a correct URL with falsy params', async () => {
-        const url = client.buildUrl('/test', false);
-        expect(url.toString()).toBe(`${client.baseUrl}/test`);
+        const url = client.buildUrl('/test.json', {
+            params: false,
+            withBasePath: false,
+        });
+        expect(url.toString()).toBe(`${client.baseUrl}/test.json`);
     });
 
     test('should transform response', async () => {
