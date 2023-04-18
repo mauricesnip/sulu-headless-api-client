@@ -17,14 +17,14 @@ export default class Client {
      * Creates a client.
      *
      * @param {Object} [options={}] - The options for the client.
-     * @param {string} [options.baseUrl='/api'] - The base path of the API.
-     * @param {string} [options.baseUrl=window.location.origin] - The base URL of the API.
-     * @param {function} [options.fetchClient=fetch.bind(window)] - The fetch client to use.
-     * @param {Object} [options.fetchOptions={}] - The fetch client options.
-     * @param {string} [options.locale=''] - The locale for every request.
-     * @param {function} [options.onError=() => {}] - The function to call on error.
-     * @param {function} [options.onResponse=(r) => r] - The function to call on response.
-     * @param {boolean} [options.removeEmbedded=false] - Whether to remove the _embedded layer from the response if present.
+     * @param {String} [options.baseUrl='/api'] - The base path of the API.
+     * @param {String} [options.baseUrl=window.location.origin] - The base URL of the API.
+     * @param {Function} [options.fetchClient=fetch.bind(window)] - The fetch client to use.
+     * @param {Object} [options.fetchOptions={}] - The options for the fetch client.
+     * @param {String} [options.locale=''] - The locale for every request.
+     * @param {Function} [options.onError=() => {}] - The function to call on error.
+     * @param {Function} [options.onResponse=(r) => r] - The function to call on response.
+     * @param {Boolean} [options.removeEmbedded=false] - Whether to remove the _embedded layer from the response if present.
      */
     constructor({
         basePath = '/api',
@@ -49,11 +49,11 @@ export default class Client {
     /**
      * Builds a URL with the given path and optional query parameters.
      *
-     * @param {string} path - The path for the URL.
+     * @param {String} path - The path for the URL.
      * @param {Object} [options={}] - The options for building the URL.
      * @param {Object} [options.params={}] - The query parameters for the URL.
-     * @param {boolean} [options.withBasePath=true] - Whether to apply the base path.
-     * @param {boolean} [options.withLocale=true] - Whether to prepend locale to path.
+     * @param {Boolean} [options.withBasePath=true] - Whether to apply the base path.
+     * @param {Boolean} [options.withLocale=true] - Whether to prepend locale to path.
      * @returns {URL} The built URL.
      */
     buildUrl(
@@ -115,7 +115,7 @@ export default class Client {
     /**
      * Retrieves page data from the given path.
      *
-     * @param {string} path - The path of the page to retrieve.
+     * @param {String} path - The path of the page to retrieve.
      * @returns {Promise<Object>} A Promise that resolves to the page data.
      */
     getPageByPath(path) {
@@ -130,7 +130,7 @@ export default class Client {
     /**
      * Retrieves navigation data with the given key and optional query parameters.
      *
-     * @param {string} key - The key of the navigation to retrieve.
+     * @param {String} key - The key of the navigation to retrieve.
      * @param {Object} [params] - The query parameters for the request.
      * @returns {Promise<Object>} A Promise that resolves to the navigation data.
      */
@@ -145,7 +145,7 @@ export default class Client {
     /**
      * Retrieves snippet data with the given area name and optional query parameters.
      *
-     * @param {string} area - The name of the snippet area to retrieve.
+     * @param {String} area - The name of the snippet area to retrieve.
      * @param {Object} [params] - The query parameters for the request.
      * @returns {Promise<Object>} A Promise that resolves to the snippet area data.
      */
@@ -160,7 +160,7 @@ export default class Client {
     /**
      * Performs a search with the given query.
      *
-     * @param {string} query - The search query.
+     * @param {String} query - The search query.
      * @returns {Promise<Object>} A Promise that resolves to the search results.
      */
     search(query) {

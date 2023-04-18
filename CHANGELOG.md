@@ -15,6 +15,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Default value for `option` parameters.
 - Optimizations for single responsibility principle (SRP).
+- Improved JSDoc.
 
 ## [0.2.0] - 2023-04-17
 

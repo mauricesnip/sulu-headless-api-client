@@ -126,14 +126,14 @@ Creates a client.
 | Parameter                | Required? | Type                | Default                    | Description                                                           |
 |:-------------------------|:----------|:--------------------|:---------------------------|:----------------------------------------------------------------------|
 | `options`                | No        | `Object`            | `{}`                       | The options for the client.                                           |
-| `options.basePath`       | No        | `string`            | `/api`                     | The base path of the API.                                             |
-| `options.baseUrl`        | No        | `string`            | `window.location.pathname` | The base URL of the API.                                              |
+| `options.basePath`       | No        | `String`            | `/api`                     | The base path of the API.                                             |
+| `options.baseUrl`        | No        | `String`            | `window.location.pathname` | The base URL of the API.                                              |
 | `options.fetchClient`    | No        | `Function`          | `fetch`                    | The fetch client to use. Tested with `fetch` and `axios`.             |
-| `options.fetchOptions`   | No        | `Object`            | `{}`                       | The fetch client options.                                             |
-| `options.locale`         | No        | `string`            | `''`                       | The locale for every request.                                         |
-| `options.onError`        | No        | `Function(error)`   | `() => {}`                 | The function to call on error.                                        |
-| `options.onResponse`     | No        | `Function(reponse)` | `(r) => r`                 | The function to call on response.                                     |
-| `options.removeEmbedded` | No        | `boolean`           | `false`                    | Whether to remove the `_embedded` layer from the response if present. |
+| `options.fetchOptions`   | No        | `Object`            | `{}`                       | The options for the fetch client.                                     |
+| `options.locale`         | No        | `String`            | `''`                       | The locale for every request.                                         |
+| `options.onError`        | No        | `Function(Error)`   | `() => {}`                 | The function to call on error.                                        |
+| `options.onResponse`     | No        | `Function(Reponse)` | `(r) => r`                 | The function to call on response.                                     |
+| `options.removeEmbedded` | No        | `Boolean`           | `false`                    | Whether to remove the `_embedded` layer from the response if present. |
 
 ## Instance methods
 
@@ -145,7 +145,7 @@ Retrieves page data from the given path.
 
 | Parameter | Required? | Type     | Default | Description                       |
 |:----------|:----------|:---------|:--------|:----------------------------------|
-| `path`    | Yes       | `string` | -       | The path of the page to retrieve. |
+| `path`    | Yes       | `String` | -       | The path of the page to retrieve. |
 
 #### Return value
 
@@ -159,11 +159,11 @@ Retrieves navigation data with the given key and optional query parameters.
 
 | Parameter        | Required? | Type      | Default | Description                                |
 |:-----------------|:----------|:----------|:--------|:-------------------------------------------|
-| `key`            | Yes       | `string`  | -       | The key of the navigation to retrieve.     |
+| `key`            | Yes       | `String`  | -       | The key of the navigation to retrieve.     |
 | `params`         | No        | `Object`  | -       | The query parameters for the request.      |
-| `params.depth`   | No        | `number`  | `1`     | The maximum depth of the navigation.       |
-| `params.excerpt` | No        | `boolean` | `false` | Whether to include excerpt data.           |
-| `params.flat`    | No        | `boolean` | `false` | Whether to return as list instead of tree. |
+| `params.depth`   | No        | `Number`  | `1`     | The maximum depth of the navigation.       |
+| `params.excerpt` | No        | `Boolean` | `false` | Whether to include excerpt data.           |
+| `params.flat`    | No        | `Boolean` | `false` | Whether to return as list instead of tree. |
 
 #### Return value
 
@@ -177,9 +177,9 @@ Retrieves snippet data with the given area name and optional query parameters.
 
 | Parameter                 | Required? | Type      | Default | Description                               |
 |:--------------------------|:----------|:----------|:--------|:------------------------------------------|
-| `area`                    | Yes       | `string`  | -       | The name of the snippet area to retrieve. |
+| `area`                    | Yes       | `String`  | -       | The name of the snippet area to retrieve. |
 | `params`                  | No        | `Object`  | -       | The query parameters for the request.     |
-| `params.includeExtension` | No        | `boolean` | `false` | Whether to include extension data.        |
+| `params.includeExtension` | No        | `Boolean` | `false` | Whether to include extension data.        |
 
 #### Return value
 
@@ -193,7 +193,7 @@ Performs a search with the given query.
 
 | Parameter | Required? | Type     | Default | Description       |
 |:----------|:----------|:---------|:--------|:------------------|
-| `query`   | Yes       | `string` | -       | The search query. |
+| `query`   | Yes       | `String` | -       | The search query. |
 
 #### Return value
 
