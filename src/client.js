@@ -123,8 +123,8 @@ export default class Client {
             this.buildUrl(`${path}.json`, {
                 withBasePath: false,
                 withLocale: false,
-            }
-        ));
+            })
+        );
     }
 
     /**
@@ -138,8 +138,8 @@ export default class Client {
         return this.request(
             this.buildUrl(`/navigations/${key}`, {
                 params,
-            }
-        ));
+            })
+        );
     }
 
     /**
@@ -169,7 +169,7 @@ export default class Client {
                 params: {
                     q: query,
                 },
-            }
-        ));
+            })
+        );
     }
 }
