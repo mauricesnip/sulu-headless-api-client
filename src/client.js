@@ -103,7 +103,7 @@ export default class Client {
      * @returns {Promise<Object>} A Promise that resolves to the request's JSON.
      */
     async handleRequestResponse(response) {
-        let json = response.json ? await response.json() : response.data;
+        let json = response.json ? await response.json() : response?.data;
 
         if (this.removeEmbedded && json?._embedded) {
             json = json._embedded;
