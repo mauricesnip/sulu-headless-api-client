@@ -87,6 +87,20 @@ navigationClient
     });
 ```
 
+## Non-browser environments
+
+By default, `Client` is intended to work in a browser environment. For non-browser environments, like Static Site Generation with Next.js or Astro, you need to opt-out from using the default `baseUrl` and `fetchClient` which rely on the `window` object. For example:
+
+```javascript
+import Client from 'sulu-headless-api-client';
+
+// Create client
+const client = new Client({
+    baseUrl: process.env.SULU_BASE_URL,
+    fetchClient: fetch,
+});
+```
+
 ## Error handling
 
 ```javascript
@@ -128,7 +142,7 @@ Creates a client.
 | `options`                | No        | `Object`            | `{}`                       | The options for the client.                                           |
 | `options.basePath`       | No        | `String`            | `/api`                     | The base path of the API.                                             |
 | `options.baseUrl`        | No        | `String`            | `window.location.pathname` | The base URL of the API.                                              |
-| `options.fetchClient`    | No        | `Function`          | `fetch`                    | The fetch client to use. Tested with `fetch` and `axios`.             |
+| `options.fetchClient`    | No        | `Function`          | `fetch.bind(window)`       | The fetch client to use. Tested with `fetch` and `axios`.             |
 | `options.fetchOptions`   | No        | `Object`            | `{}`                       | The options for the fetch client.                                     |
 | `options.locale`         | No        | `String`            | `''`                       | The locale for every request.                                         |
 | `options.onError`        | No        | `Function(Error)`   | `() => {}`                 | The function to call on error.                                        |
