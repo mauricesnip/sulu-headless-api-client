@@ -17,7 +17,7 @@ export default class Client {
      * Creates a client.
      *
      * @param {Object} [options={}] - The options for the client.
-     * @param {String} [options.baseUrl='/api'] - The base path of the API.
+     * @param {String} [options.basePath='/api'] - The base path of the API.
      * @param {String} [options.baseUrl=window.location.origin] - The base URL of the API.
      * @param {Function} [options.fetchClient=fetch.bind(window)] - The fetch client to use.
      * @param {Object} [options.fetchOptions={}] - The options for the fetch client.
